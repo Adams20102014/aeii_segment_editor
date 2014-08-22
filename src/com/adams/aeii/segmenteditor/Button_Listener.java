@@ -7,6 +7,7 @@ package com.adams.aeii.segmenteditor;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -67,7 +69,7 @@ public class Button_Listener implements ActionListener {
         this.btn = btn;
     }
 
-    public void initSa() {
+    public void initSa() throws IOException {
         sa.setJtDefenceBonus(defence_bonus);
         sa.setJtConsumptionSteps(consumption_steps);
         sa.setJtHpReturn(hp_return);
@@ -81,6 +83,7 @@ public class Button_Listener implements ActionListener {
         sa.setAnimatedTiles(animated_tiles);
         sa.setJtMapMapping(map_mapping);
         sa.setJcMapMapping(map_mapping);
+        sa.setJlImage(getImage(index));
     }
 
     public void getSa() {
@@ -123,6 +126,12 @@ public class Button_Listener implements ActionListener {
             if_animated_tiles = "false";
         }
         map_mapping = sa.getJtMapMapping();
+    }
+    
+    public BufferedImage getImage(int index) throws IOException {
+        File file = new File("res\\img\\tiles\\tile_" + index + ".png");
+        BufferedImage buImage = ImageIO.read(file);
+        return buImage;
     }
 
     @Override
@@ -233,6 +242,8 @@ public class Button_Listener implements ActionListener {
                     din.close();
                 } catch (FileNotFoundException ex) {
 
+                } catch (IOException ex) {
+                    Logger.getLogger(Button_Listener.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         } else if (e.getActionCommand().equals("保存图块文件")) {

@@ -46,6 +46,7 @@ public class Segment_Attribute {
     private JPanel jp_repaired;
     private JPanel jp_animated_tiles;
     private JPanel jp_map_mapping;
+    private JPanel jp_image;
 
     private JLabel jl_defence_bonus;
     private JLabel jl_consumption_steps;
@@ -67,6 +68,7 @@ public class Segment_Attribute {
     private JLabel jl_repaired_id;
     private JLabel jl_animated_tiles_id;
     private JLabel jl_map_mapping;
+    private JLabel jl_image;
 
     private JTextField jt_defence_bonus;
     private JTextField jt_consumption_steps;
@@ -145,6 +147,7 @@ public class Segment_Attribute {
         jp_database.add(this.initJpRepaired());
         jp_database.add(this.initJpAnimatedTiles());
         jp_database.add(this.initJpMapMapping());
+        jp_database.add(this.initJpImage());
 //        jp_database.setBounds(x, y, width, height);
         return jp_database;
     }
@@ -456,6 +459,20 @@ public class Segment_Attribute {
         return jp_map_mapping;
     }
 
+    public JPanel initJpImage() {
+        jp_image = new JPanel();
+        jp_image.setBorder(BorderFactory.createTitledBorder("图块图片显示："));
+        jl_image = new JLabel();
+        jp_image.setPreferredSize(new Dimension(120,60));
+        jp_image.add(jl_image);
+        return jp_image;
+    }
+    
+    public void setJlImage(BufferedImage image) {
+        ImageIcon  imageicon = new ImageIcon(image);
+        jl_image.setIcon(imageicon);
+    }
+    
     public void setJtDefenceBonus(String defence_bonus) {
         this.jt_defence_bonus.setText(defence_bonus);
     }
