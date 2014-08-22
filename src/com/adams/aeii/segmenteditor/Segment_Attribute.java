@@ -5,6 +5,7 @@
  */
 package com.adams.aeii.segmenteditor;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -471,6 +472,7 @@ public class Segment_Attribute {
     public void setJlImage(BufferedImage image) {
         ImageIcon  imageicon = new ImageIcon(image);
         jl_image.setIcon(imageicon);
+//        jl_image.setBackground(Color.black);
     }
     
     public void setJtDefenceBonus(String defence_bonus) {
